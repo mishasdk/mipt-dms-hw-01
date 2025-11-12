@@ -1,0 +1,40 @@
+Enum gender_enum {
+  Male
+  Female
+  Unknown
+}
+
+Table customers {
+  customer_id integer [pk]
+  first_name varchar
+  last_name varchar
+  gender gender_enum
+  DOB date
+  job_title varchar
+  job_industry_category varchar
+  wealth_segment varchar
+  deceased_indicator bool
+  owns_car bool
+  address varchar
+  postcode integer
+  state varchar
+  country varchar
+  property_valuation integer
+}
+
+Table transactions {
+  transaction_id integer [pk]
+  product_id integer
+  customer_id integer
+  transaction_date date
+  online_order bool
+  order_status varchar
+  brand varchar
+  product_line varchar
+  product_class varchar
+  product_size varchar
+  list_price decimal(15, 2)
+  standard_cost decimal(15, 2)
+}
+
+Ref transaction_to_customer: transactions.customer_id > customers.customer_id

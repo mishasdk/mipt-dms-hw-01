@@ -1,0 +1,55 @@
+Enum gender_enum {
+  Male
+  Female
+  Unknown
+}
+
+Table customers {
+  customer_id integer [pk]
+  postcode_id integer
+  first_name varchar
+  last_name varchar
+  gender gender_enum
+  DOB date
+  job_title varchar
+  job_industry_category varchar
+  wealth_segment varchar
+  deceased_indicator bool
+  owns_car bool
+  street_number varchar
+  street_name varchar
+  street_type varchar
+  property_valuation integer
+}
+
+Table postcodes {
+  postcode_id integer [pk]
+  state varchar
+  country varchar
+}
+
+Table transactions {
+  transaction_id integer [pk]
+  product_id integer
+  product_brand integer
+  customer_id integer
+  transaction_date date
+  online_order bool
+  order_status varchar
+}
+
+Table products {
+  product_id integer [pk]
+  product_brand integer [pk]
+  product_line varchar
+  product_class varchar
+  product_size varchar
+  list_price decimal(15, 2)
+  standard_cost decimal(15, 2)
+}
+
+Ref: transactions.customer_id > customers.customer_id
+
+Ref: transactions.(product_id, product_brand) > products.(product_id, product_brand)
+
+Ref: customers.postcode_id > postcodes.postcode_id
